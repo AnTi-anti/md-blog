@@ -51,7 +51,7 @@
 
 因为“拿出来”和“用起来”中间，隔着很远。
 
-![配图1：微信资料整理工具界面示意图，展示聊天记录、搜索框、联系人列表、导出按钮和年度总结卡片](images/wechat-dataanalysis-01-tool-overview.png)
+![配图1：微信资料整理工具界面示意图，展示聊天记录、搜索框、联系人列表、导出按钮和年度总结卡片](images/wechat-dataanalysis-01-tool-overview.webp)
 
 ---
 
@@ -188,7 +188,7 @@
 > 2. **界面是不是看得懂**
 > 3. **自己有没有先备份**
 
-![配图2：资料安全与备份示意图，包含备份硬盘、锁、文件夹、聊天气泡和隐私提示卡片](images/wechat-dataanalysis-02-safety-and-backup.png)
+![配图2：资料安全与备份示意图，包含备份硬盘、锁、文件夹、聊天气泡和隐私提示卡片](images/wechat-dataanalysis-02-safety-and-backup.webp)
 
 ---
 
@@ -226,7 +226,7 @@ README 给出的路径很简单：
 > 3. **确认能看、能搜、能打开**
 > 4. **最后再决定要不要继续整理**
 
-![配图3：小白上手 5 步流程图，展示打开 Release 页面、下载安装包、安装启动、先做备份、先小范围测试](images/wechat-dataanalysis-03-quick-start.png)
+![配图3：小白上手 5 步流程图，展示打开 Release 页面、下载安装包、安装启动、先做备份、先小范围测试](images/wechat-dataanalysis-03-quick-start.webp)
 
 ---
 

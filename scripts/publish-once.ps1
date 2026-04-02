@@ -27,6 +27,11 @@ try {
     throw "Current directory is not a git repository. Run: git init -b main"
   }
 
+  & python (Join-Path $PSScriptRoot "optimize-images.py")
+  if ($LASTEXITCODE -ne 0) {
+    throw "Image optimization failed."
+  }
+
   & (Join-Path $PSScriptRoot "update-posts.ps1")
 
   $status = & git status --porcelain
