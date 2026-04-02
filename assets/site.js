@@ -129,7 +129,7 @@
         return;
       }
 
-      const response = await fetch(`./posts/${encodeURIComponent(slug)}.md`, { cache: "no-store" });
+      const response = await fetch(`./${post.source.split("/").map(encodeURIComponent).join("/")}`, { cache: "no-store" });
       if (!response.ok) {
         throw new Error(`文章文件读取失败：${response.status}`);
       }

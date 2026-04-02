@@ -17,10 +17,11 @@
 
 ## 文章写法
 
-文件名请直接使用 URL slug，例如：
+文件名可以直接使用英文名或中文名，例如：
 
 ```text
 posts/github-pages-blog.md
+posts/我的第二篇文章.md
 posts/my-second-post.md
 ```
 
@@ -42,6 +43,8 @@ tags:
 ```
 
 如果你不写 `title`、`date`、`summary`，脚本会自动从标题和文件时间里补默认值。
+
+中文文件名现在也支持，会自动作为文章标识写入索引并通过 URL 编码访问。
 
 ## 初始化步骤
 

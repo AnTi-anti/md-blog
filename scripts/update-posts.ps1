@@ -20,13 +20,10 @@ function Get-Slug {
     [string]$Name
   )
 
-  $slug = $Name.ToLowerInvariant()
-  $slug = [System.Text.RegularExpressions.Regex]::Replace($slug, "[^a-z0-9\-_]+", "-")
-  $slug = [System.Text.RegularExpressions.Regex]::Replace($slug, "-{2,}", "-")
-  $slug = $slug.Trim("-")
+  $slug = $Name.Trim()
 
   if ([string]::IsNullOrWhiteSpace($slug)) {
-    throw "Cannot generate a slug from file name '$Name'. Rename it with letters or digits."
+    throw "Cannot generate a slug from file name '$Name'. Rename it with a non-empty name."
   }
 
   return $slug
@@ -87,10 +84,6 @@ $posts = foreach ($file in (Get-ChildItem -LiteralPath $PostsDirectory -Filter *
   $parsed = Get-FrontMatter -Content $content
   $firstHeading = [System.Text.RegularExpressions.Regex]::Match($parsed.Body, '^\s*#\s+(.+)$', [System.Text.RegularExpressions.RegexOptions]::Multiline)
   $slug = Get-Slug -Name $file.BaseName
-
-  if ($file.BaseName -cne $slug) {
-    throw "File '$($file.Name)' must use the slug as its file name, for example '$slug.md'."
-  }
 
   $meta = $parsed.Meta
   $title = if ($meta.ContainsKey("title") -and $meta["title"]) {
