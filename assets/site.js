@@ -78,6 +78,60 @@
     return `<div class="status-card">${message}</div>`;
   }
 
+  function isRelativeAssetPath(value) {
+    return Boolean(value) &&
+      !/^(?:[a-z]+:)?\/\//i.test(value) &&
+      !/^(?:data|mailto|tel):/i.test(value) &&
+      !value.startsWith("#") &&
+      !value.startsWith("/");
+  }
+
+  function normalizeJoinedPath(baseDir, assetPath) {
+    const queryIndex = assetPath.search(/[?#]/);
+    const pathOnly = queryIndex >= 0 ? assetPath.slice(0, queryIndex) : assetPath;
+    const suffix = queryIndex >= 0 ? assetPath.slice(queryIndex) : "";
+    const segments = `${baseDir}/${pathOnly}`.split("/");
+    const normalized = [];
+
+    for (const segment of segments) {
+      if (!segment || segment === ".") {
+        continue;
+      }
+      if (segment === "..") {
+        normalized.pop();
+        continue;
+      }
+      normalized.push(segment);
+    }
+
+    return `./${normalized.map(encodeURIComponent).join("/")}${suffix}`;
+  }
+
+  function rewriteRelativeAssetUrls(html, sourcePath) {
+    const sourceSegments = sourcePath.split("/");
+    sourceSegments.pop();
+    const baseDir = sourceSegments.join("/");
+
+    const container = document.createElement("div");
+    container.innerHTML = html;
+
+    for (const image of container.querySelectorAll("img")) {
+      const src = image.getAttribute("src");
+      if (isRelativeAssetPath(src)) {
+        image.setAttribute("src", normalizeJoinedPath(baseDir, src));
+      }
+    }
+
+    for (const link of container.querySelectorAll("a")) {
+      const href = link.getAttribute("href");
+      if (isRelativeAssetPath(href)) {
+        link.setAttribute("href", normalizeJoinedPath(baseDir, href));
+      }
+    }
+
+    return container.innerHTML;
+  }
+
   async function renderHome() {
     const target = document.getElementById("post-list");
     const count = document.getElementById("post-count");
@@ -144,7 +198,7 @@
         <div class="article-meta-line">${formatDate(parsed.meta.date || post.date)}</div>
         <div class="post-meta">${renderTags(parsed.meta.tags || post.tags)}</div>
       `;
-      bodyNode.innerHTML = marked.parse(parsed.body);
+      bodyNode.innerHTML = rewriteRelativeAssetUrls(marked.parse(parsed.body), post.source);
     } catch (error) {
       titleNode.textContent = "加载失败";
       bodyNode.innerHTML = renderStatus(error.message);
