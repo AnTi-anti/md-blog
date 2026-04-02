@@ -1,0 +1,41 @@
+{
+  "jobs": 1,
+  "tasks": [
+    {
+      "id": "cover",
+      "promptFiles": [
+        "prompts/cover.md"
+      ],
+      "image": "cover-wechat-dataanalysis.png",
+      "ar": "2.35:1",
+      "quality": "2k"
+    },
+    {
+      "id": "tool-overview",
+      "promptFiles": [
+        "prompts/01-tool-overview.md"
+      ],
+      "image": "wechat-dataanalysis-01-tool-overview.png",
+      "ar": "16:9",
+      "quality": "2k"
+    },
+    {
+      "id": "safety-and-backup",
+      "promptFiles": [
+        "prompts/02-safety-and-backup.md"
+      ],
+      "image": "wechat-dataanalysis-02-safety-and-backup.png",
+      "ar": "16:9",
+      "quality": "2k"
+    },
+    {
+      "id": "quick-start",
+      "promptFiles": [
+        "prompts/03-quick-start.md"
+      ],
+      "image": "wechat-dataanalysis-03-quick-start.png",
+      "ar": "16:9",
+      "quality": "2k"
+    }
+  ]
+}
