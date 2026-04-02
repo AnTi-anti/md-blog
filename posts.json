@@ -3,7 +3,7 @@
         "slug":  "知识付费情绪生意-微信公众号",
         "title":  "你以为买的是知识，很多时候买的其实是情绪",
         "date":  "2026-04-02",
-        "summary":  "\u003e 平台：微信公众号 | 字数：约1800字 | 调性：理性犀利 --- ![知识标签遮蔽情绪交易](images/00-scene-knowledge-mask.png) 这几年，“知识付费”几乎成了一个体面的总称。 从课程、社群、训练营",
+        "summary":  "\u003e 平台：微信公众号 | 字数：约1800字 | 调性：理性犀利 --- ![知识标签遮蔽情绪交易](images/00-scene-knowledge-mask.webp) 这几年，“知识付费”几乎成了一个体面的总称。 从课程、社群、训练",
         "tags":  [
 
                  ],
@@ -13,21 +13,11 @@
         "slug":  "wx4py-微信公众号-爆款版-配图版-去AI味",
         "title":  "AI 会写不会做？这个项目，正在补上微信自动化的最后一公里",
         "date":  "2026-04-02",
-        "summary":  "\u003e 平台：微信公众号 | 字数：约2900字 | 调性：理性、直接、带使用经验感 ![封面图：AI 工作流模块与微信桌面客户端之间被重新接通的执行链路，强调“最后一公里被补上”](images/wx4py-cover.png) --- 这两",
+        "summary":  "\u003e 平台：微信公众号 | 字数：约2900字 | 调性：理性、直接、带使用经验感 ![封面图：AI 工作流模块与微信桌面客户端之间被重新接通的执行链路，强调“最后一公里被补上”](images/wx4py-cover.webp) --- 这",
         "tags":  [
 
                  ],
         "source":  "posts/wx4py-微信公众号-爆款版-配图版-去AI味.md"
-    },
-    {
-        "slug":  "5分钟跨过Claude高手与小白的几条指令鸿沟",
-        "title":  "5分钟跨过Claude高手与小白的几条指令鸿沟",
-        "date":  "2026-04-02",
-        "summary":  "大部分人用Claude Code的方式，跟用ChatGPT没有任何区别。 这就好比你买了一辆跑车，但每天只用它听广播： “打开终端，输入一个问题，得到一段回答，复制粘贴。 然后关掉。 下次打开，重新来过。” Claude Code里藏着一套",
-        "tags":  [
-
-                 ],
-        "source":  "posts/5分钟跨过Claude高手与小白的几条指令鸿沟.md"
     },
     {
         "slug":  "WeChatDataAnalysis-公众号文章-配图版",
@@ -40,13 +30,13 @@
         "source":  "posts/WeChatDataAnalysis-公众号文章-配图版.md"
     },
     {
-        "slug":  "openclaw微信接入-公众号",
-        "title":  "微信开始接住 AI Agent 了：OpenClaw 接入实测，安卓和 iPhone 都能用",
-        "date":  "2026-03-24",
-        "summary":  "\u003e 平台：微信公众号 | 字数：约1700字 | 调性：信息密度高、口语化、适合转发 ![OpenClaw 接入微信封面图](imgs/00-scene-wechat-agent-cover.png) --- 这两天，一个很明显的信号出现了",
+        "slug":  "5分钟跨过Claude高手与小白的几条指令鸿沟",
+        "title":  "5分钟跨过Claude高手与小白的几条指令鸿沟",
+        "date":  "2026-04-02",
+        "summary":  "大部分人用Claude Code的方式，跟用ChatGPT没有任何区别。 这就好比你买了一辆跑车，但每天只用它听广播： “打开终端，输入一个问题，得到一段回答，复制粘贴。 然后关掉。 下次打开，重新来过。” Claude Code里藏着一套",
         "tags":  [
 
                  ],
-        "source":  "posts/openclaw微信接入-公众号.md"
+        "source":  "posts/5分钟跨过Claude高手与小白的几条指令鸿沟.md"
     }
 ]
