@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文章归档</title>
+  <meta name="description" content="基于 GitHub Pages 的 Markdown 博客">
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body data-page="home">
+  <div class="page-shell">
+    <header class="hero">
+      <p class="eyebrow">GitHub Pages Blog</p>
+      <h1>文章归档</h1>
+      <p class="hero-copy">把 Markdown 放进 <code>posts/</code>，站点会自动列出文章链接；推送到 GitHub 后即可通过 Pages 访问。</p>
+    </header>
+
+    <main>
+      <section class="panel">
+        <div class="panel-head">
+          <h2>最新文章</h2>
+          <p id="post-count">正在加载文章索引…</p>
+        </div>
+        <div id="post-list" class="post-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="./assets/site.js"></script>
+</body>
+</html>
