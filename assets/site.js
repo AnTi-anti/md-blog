@@ -1,8 +1,15 @@
 (function () {
   const postsIndexPath = "./posts.json";
+  const requestVersion = String(Date.now());
+
+  function withVersion(path) {
+    const url = new URL(path, window.location.href);
+    url.searchParams.set("v", requestVersion);
+    return url.toString();
+  }
 
   async function fetchJson(path) {
-    const response = await fetch(path);
+    const response = await fetch(withVersion(path));
     if (!response.ok) {
       throw new Error(`Failed to fetch ${path}: ${response.status}`);
     }
@@ -10,7 +17,7 @@
   }
 
   async function fetchText(path) {
-    const response = await fetch(path);
+    const response = await fetch(withVersion(path));
     if (!response.ok) {
       throw new Error(`Failed to fetch ${path}: ${response.status}`);
     }
