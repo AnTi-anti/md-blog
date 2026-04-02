@@ -22,10 +22,11 @@ set "EXIT_CODE=%ERRORLEVEL%"
 
 echo.
 if "%EXIT_CODE%"=="0" (
-  echo Publish finished.
+  echo Publish finished and push succeeded.
   echo If new changes were found, GitHub Pages will update in about 1-2 minutes.
 ) else (
   echo Publish failed with exit code %EXIT_CODE%.
+  echo The commit or push did not complete correctly.
   echo Check the messages above for the exact error.
 )
 
