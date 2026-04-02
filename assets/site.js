@@ -2,11 +2,19 @@
   const postsIndexPath = "./posts.json";
 
   async function fetchJson(path) {
-    const response = await fetch(path, { cache: "no-store" });
+    const response = await fetch(path);
     if (!response.ok) {
       throw new Error(`Failed to fetch ${path}: ${response.status}`);
     }
     return response.json();
+  }
+
+  async function fetchText(path) {
+    const response = await fetch(path);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${path}: ${response.status}`);
+    }
+    return response.text();
   }
 
   function parseFrontMatter(rawText) {
@@ -87,9 +95,10 @@
   }
 
   function normalizeJoinedPath(baseDir, assetPath) {
-    const queryIndex = assetPath.search(/[?#]/);
-    const pathOnly = queryIndex >= 0 ? assetPath.slice(0, queryIndex) : assetPath;
-    const suffix = queryIndex >= 0 ? assetPath.slice(queryIndex) : "";
+    const normalizedAssetPath = assetPath.replace(/^imgs\//i, "images/");
+    const queryIndex = normalizedAssetPath.search(/[?#]/);
+    const pathOnly = queryIndex >= 0 ? normalizedAssetPath.slice(0, queryIndex) : normalizedAssetPath;
+    const suffix = queryIndex >= 0 ? normalizedAssetPath.slice(queryIndex) : "";
     const segments = `${baseDir}/${pathOnly}`.split("/");
     const normalized = [];
 
@@ -115,12 +124,18 @@
     const container = document.createElement("div");
     container.innerHTML = html;
 
-    for (const image of container.querySelectorAll("img")) {
+    const images = Array.from(container.querySelectorAll("img"));
+    images.forEach((image, index) => {
       const src = image.getAttribute("src");
       if (isRelativeAssetPath(src)) {
         image.setAttribute("src", normalizeJoinedPath(baseDir, src));
       }
-    }
+      image.loading = index === 0 ? "eager" : "lazy";
+      image.decoding = "async";
+      if (index > 0) {
+        image.fetchPriority = "low";
+      }
+    });
 
     for (const link of container.querySelectorAll("a")) {
       const href = link.getAttribute("href");
@@ -183,14 +198,10 @@
         return;
       }
 
-      const response = await fetch(`./${post.source.split("/").map(encodeURIComponent).join("/")}`, { cache: "no-store" });
-      if (!response.ok) {
-        throw new Error(`文章文件读取失败：${response.status}`);
-      }
-
-      const rawText = await response.text();
+      const rawText = await fetchText(`./${post.source.split("/").map(encodeURIComponent).join("/")}`);
       const parsed = parseFrontMatter(rawText);
       const articleTitle = parsed.meta.title || post.title || slug;
+      const renderedHtml = rewriteRelativeAssetUrls(marked.parse(parsed.body), post.source);
 
       document.title = `${articleTitle} | 文章归档`;
       titleNode.textContent = articleTitle;
@@ -198,7 +209,10 @@
         <div class="article-meta-line">${formatDate(parsed.meta.date || post.date)}</div>
         <div class="post-meta">${renderTags(parsed.meta.tags || post.tags)}</div>
       `;
-      bodyNode.innerHTML = rewriteRelativeAssetUrls(marked.parse(parsed.body), post.source);
+
+      requestAnimationFrame(() => {
+        bodyNode.innerHTML = renderedHtml;
+      });
     } catch (error) {
       titleNode.textContent = "加载失败";
       bodyNode.innerHTML = renderStatus(error.message);
