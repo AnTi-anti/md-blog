@@ -62,6 +62,14 @@ def ensure_webp(source_path: Path) -> Path:
     return target_path
 
 
+def collect_all_raster_sources() -> list[Path]:
+    sources: set[Path] = set()
+    for extension in RASTER_EXTENSIONS:
+        sources.update(POSTS_DIR.rglob(f"*{extension}"))
+        sources.update(POSTS_DIR.rglob(f"*{extension.upper()}"))
+    return sorted(path.resolve() for path in sources if path.is_file())
+
+
 def rewrite_markdown_images(markdown_file: Path) -> bool:
     content = markdown_file.read_text(encoding="utf-8")
     changed = False
@@ -91,10 +99,23 @@ def rewrite_markdown_images(markdown_file: Path) -> bool:
 def main() -> int:
     markdown_files = sorted(POSTS_DIR.glob("*.md"))
     changed_files = []
+    sources_to_remove = collect_all_raster_sources()
+    converted_sources = []
+
+    for source_path in sources_to_remove:
+        ensure_webp(source_path)
+        converted_sources.append(source_path.name)
 
     for markdown_file in markdown_files:
         if rewrite_markdown_images(markdown_file):
             changed_files.append(markdown_file.name)
+
+    deleted_sources = []
+    for source_path in sources_to_remove:
+        target_path = source_path.with_suffix(".webp")
+        if target_path.exists() and source_path.exists():
+            source_path.unlink()
+            deleted_sources.append(source_path.name)
 
     if changed_files:
         print("Optimized image references in:")
@@ -102,6 +123,16 @@ def main() -> int:
             print(f"  - {name}")
     else:
         print("No markdown image references needed optimization.")
+
+    if converted_sources:
+        print("Ensured WebP copies for:")
+        for name in converted_sources:
+            print(f"  - {name}")
+
+    if deleted_sources:
+        print("Removed original raster files:")
+        for name in deleted_sources:
+            print(f"  - {name}")
 
     return 0
 
