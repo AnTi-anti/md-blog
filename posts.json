@@ -1,5 +1,15 @@
 ﻿[
     {
+        "slug":  "Dota2英雄指数分析系统：基于Stratz API的多线程爬虫与UI可视化实现",
+        "title":  "**Dota2英雄指数分析系统：基于Stratz API的多线程爬虫与UI可视化实现**",
+        "date":  "2026-04-21",
+        "summary":  "\u003cfont color=\"red\"\u003e对爬虫 \u0026 逆向 \u0026 算法模型感兴趣的同学可以查看历史文章，私信作者一对一小班教学，学习详细案例和兼职接单渠道\u003c/font\u003e \u003cfont color=\"red\"\u003e相关代码和软件视频购买地址：http://",
+        "tags":  [
+
+                 ],
+        "source":  "posts/Dota2英雄指数分析系统：基于Stratz API的多线程爬虫与UI可视化实现.md"
+    },
+    {
         "slug":  "wx4py-微信公众号-爆款版-配图版-去AI味",
         "title":  "AI 会写不会做？这个项目，正在补上微信自动化的最后一公里",
         "date":  "2026-04-02",
